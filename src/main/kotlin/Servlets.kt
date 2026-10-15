@@ -33,6 +33,14 @@ abstract class BaseCalcServlet : HttpServlet() {
                 )
             )
         }
+        catch (e: ArithmeticException) {
+            resp.status = HttpServletResponse.SC_BAD_REQUEST
+            resp.writer.write(
+                json.encodeToString(
+                    CalcResponse(errors = listOf("Math error: ${e.message}"))
+                )
+            )
+        }
         catch (e: Exception) {
             resp.status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR
             val message = e.message ?: e::class.simpleName ?: "Internal Server Error"
