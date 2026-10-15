@@ -14,13 +14,13 @@ fun main() {
     val ctx = tomcat.addContext("", null)
 
     mapOf(
-        "add"       to AddServlet(),
+        "sum"       to AddServlet(),
         "subtract"  to SubtractServlet(),
         "multiply"  to MultiplyServlet(),
         "divide"    to DivideServlet()
     ).forEach { (path, servlet) ->
         Tomcat.addServlet(ctx, path, servlet)
-        ctx.addServletMapping("/$path", path)
+        ctx.addServletMapping("/api/v1/$path", path)
     }
 
     val connector = Connector("HTTP/1.1")
