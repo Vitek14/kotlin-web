@@ -7,5 +7,4 @@ import org.example.app.serializations.DoubleAsNumberSerializer
 data class CalcResponse(
     @Serializable(with = DoubleAsNumberSerializer::class)
     val result: Double? = null,
-    val errors: List<String>? = null
 )

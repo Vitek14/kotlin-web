@@ -6,9 +6,9 @@ import jakarta.servlet.http.HttpServletResponse
 import kotlinx.serialization.SerializationException
 import org.example.app.models.CalcRequest
 import org.example.app.models.CalcResponse
-import org.example.app.controllers.Calculator
+import org.example.app.controllers.CalcController
+import org.example.app.models.ErrorResponse
 import org.example.app.serializations.json
-//import org.example.app.extensions.toJsonNumber
 
 abstract class BaseCalcServlet : HttpServlet() {
     /*
@@ -16,7 +16,7 @@ abstract class BaseCalcServlet : HttpServlet() {
     Logic of calculating defines in Calculator class.
      */
 
-    protected val calculator = Calculator()
+    protected val calculator = CalcController()
 
     protected abstract fun calculate(operands: List<Double>): Double
 
@@ -33,8 +33,10 @@ abstract class BaseCalcServlet : HttpServlet() {
         catch (e: SerializationException) {
             resp.status = HttpServletResponse.SC_BAD_REQUEST
             resp.writer.write(
-                json.encodeToString(
-                    CalcResponse(errors = listOf("Invalid request format: ${e.message}"))
+                json.encodeToString(ErrorResponse(
+                    "INVALID_REQUEST",
+                    "Invalid request format: ${e.message}"
+                    )
                 )
             )
         }
@@ -42,14 +44,13 @@ abstract class BaseCalcServlet : HttpServlet() {
             resp.status = HttpServletResponse.SC_BAD_REQUEST
             resp.writer.write(
                 json.encodeToString(
-                    CalcResponse(errors = listOf("Math error: ${e.message}"))
+                    ErrorResponse("MATH_ERROR", "Math error: ${e.message}"))
                 )
-            )
         }
         catch (e: Exception) {
             resp.status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR
             val message = e.message ?: e::class.simpleName ?: "Internal Server Error"
-            resp.writer.write(json.encodeToString(CalcResponse(errors = listOf(message))))
+            resp.writer.write(json.encodeToString(ErrorResponse("INTERNAL_ERROR", message)))
         }
     }
 }
