@@ -8,7 +8,7 @@ import org.example.app.models.CalcRequest
 import org.example.app.models.CalcResponse
 import org.example.app.controllers.Calculator
 import org.example.app.serializations.json
-import org.example.app.extensions.toJsonNumber
+//import org.example.app.extensions.toJsonNumber
 
 abstract class BaseCalcServlet : HttpServlet() {
     /*
@@ -28,7 +28,7 @@ abstract class BaseCalcServlet : HttpServlet() {
         try {
             val request = json.decodeFromString<CalcRequest>(body)
             val result = calculate(request.operands)
-            resp.writer.write(json.encodeToString(CalcResponse(result = result.toJsonNumber())))
+            resp.writer.write(json.encodeToString(CalcResponse(result)))
         }
         catch (e: SerializationException) {
             resp.status = HttpServletResponse.SC_BAD_REQUEST
