@@ -1,4 +1,4 @@
-package org.example
+package org.example.app.controllers
 
 class Calculator {
     /*

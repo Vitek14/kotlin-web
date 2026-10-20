@@ -1,9 +1,14 @@
-package org.example
+package org.example.app.servlets
 
 import jakarta.servlet.http.HttpServlet
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import kotlinx.serialization.SerializationException
+import org.example.app.models.CalcRequest
+import org.example.app.models.CalcResponse
+import org.example.app.controllers.Calculator
+import org.example.app.serializations.json
+import org.example.app.extensions.toJsonNumber
 
 abstract class BaseCalcServlet : HttpServlet() {
     /*

@@ -103,7 +103,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                    <mainClass>org.example.MainKt</mainClass>
+                    <mainClass>org.example.app.MainKt</mainClass>
                 </configuration>
             </plugin>
         </plugins>

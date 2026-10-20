@@ -1,7 +1,11 @@
-package org.example
+package org.example.app
 
 import org.apache.catalina.connector.Connector
 import org.apache.catalina.startup.Tomcat
+import org.example.app.servlets.AddServlet
+import org.example.app.servlets.DivideServlet
+import org.example.app.servlets.MultiplyServlet
+import org.example.app.servlets.SubtractServlet
 import java.io.File
 
 fun main() {
