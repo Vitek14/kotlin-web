@@ -1,6 +1,6 @@
 package org.example.app.controllers
 
-class Calculator {
+class CalcController {
     /*
     Class defines logic of calculating.
 
