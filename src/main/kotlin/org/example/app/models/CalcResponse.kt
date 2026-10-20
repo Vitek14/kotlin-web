@@ -1,10 +1,11 @@
 package org.example.app.models
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.JsonElement
+import org.example.app.serializations.DoubleAsNumberSerializer
 
 @Serializable
 data class CalcResponse(
-    val result: JsonElement? = null,
+    @Serializable(with = DoubleAsNumberSerializer::class)
+    val result: Double? = null,
     val errors: List<String>? = null
 )
