@@ -24,5 +24,5 @@ val json = Json {
 
 // serializes double with a number without a remainder to integer(long):
 fun Double.toJsonNumber(): JsonElement =
-    if (isFinite() && this == toLong().toDouble()) JsonPrimitive(toLong())
+    if (this % 1.0 == 0.0) JsonPrimitive(toLong())
     else JsonPrimitive(this)
