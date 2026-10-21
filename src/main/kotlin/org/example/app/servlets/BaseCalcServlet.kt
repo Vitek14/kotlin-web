@@ -54,19 +54,3 @@ abstract class BaseCalcServlet : HttpServlet() {
         }
     }
 }
-
-class AddServlet : BaseCalcServlet() {
-    override fun calculate(operands: List<Double>) = calculator.add(operands)
-}
-
-class SubtractServlet : BaseCalcServlet() {
-    override fun calculate(operands: List<Double>) = calculator.subtract(operands)
-}
-
-class MultiplyServlet : BaseCalcServlet() {
-    override fun calculate(operands: List<Double>) = calculator.multiply(operands)
-}
-
-class DivideServlet : BaseCalcServlet() {
-    override fun calculate(operands: List<Double>) = calculator.divide(operands)
-}
